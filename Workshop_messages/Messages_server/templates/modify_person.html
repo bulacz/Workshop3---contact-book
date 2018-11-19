@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Modyfikuj osobę: </title>
+</head>
+<body>
+<div>
+    <form method="post">
+        {% csrf_token %}
+    <!-- wyświetlenie pobranych z db danych użytkownika -->
+        <table border="2">
+            <th colspan="3">Modyfikuj kontakt</th>
+            <tr>
+                    <td>Imię:</td>
+                <td>
+                    <input type="text" maxlength="160" name="name" value="{{ person_name }}">
+                </td>
+            </tr>
+            <tr>
+                <td>Nazwisko:</td>
+                <td>
+                    <input type="text" maxlength="160" name="surname" value="{{ person_surname }}">
+                </td>
+            </tr>
+            {% if person_description %}
+                <tr>
+                    <td>Kto to?</td>
+                    <td>
+                        <input type="text" name="description" value="{{ person_description }}">
+                    </td>
+                </tr>
+             {% endif %}
+
+
+            <!-- showing contact's adress -->
+             {% if persons_adress %}
+                <tr>
+                    <td colspan="2">Adres:</td>
+                </tr>
+                 <tr>
+                    {% if persons_adress.flat == None %}
+                        <td>{{ persons_adress.city }}, {{ persons_adress.street }} nr {{ persons_adress.house }}</td>
+                    {% else %}
+                        <td> {{ persons_adress }} </td>
+                    {% endif %}
+                     <td><input type="checkbox" name="adress_delete" value="{{ persons_adress.id }}">Usuń</td>
+                </tr>
+             {% endif %}
+
+            <!-- showing contact's phone numbers -->
+           {% if persons_phones %}
+            <tr>
+                <td colspan="2" align="center">Telefony: </td>
+            </tr>
+               {% for each_phone_number in persons_phones %}
+                    <tr>
+                        <td>{{ each_phone_number }}</td>
+
+                        <td><input type="checkbox" name="phone_delete"
+                                   value="{{ each_phone_number.id }}">Usuń</td>
+                    </tr>
+               {% endfor %}
+            {% endif %}
+
+            <!-- showing person's emails -->
+            {% if persons_emails %}
+            <tr>
+                <td colspan="2" align="center">E-maile: </td>
+            </tr>
+               {% for each_email in persons_emails %}
+                    <tr>
+                        <td>{{ each_email }}</td>
+
+                        <td><input type="checkbox" name="email_delete" value="{{ each_email.id }}">Usuń</td>
+                    </tr>
+               {% endfor %}
+            {% endif %}
+            <tr>
+                <td colspan="2" align="center">
+                    <input type="submit" value="Zapis zmiany!">
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+<p>------------</p>
+<div>
+    <form method="get">
+
+        <button formaction="/{{ person_id }}/addAdress">Zmień / dodaj adres zam.</button>
+        <button formaction="/{{ person_id }}/addEmail">Dodaj adres e-mail</button>
+        <button formaction="/{{ person_id }}/addTelephone">Dodaj Telefon</button><br>
+        <button formmethod="get" formaction="/allusers">Anuluj!</button>
+    </form>
+</div>
+</body>
+</html>

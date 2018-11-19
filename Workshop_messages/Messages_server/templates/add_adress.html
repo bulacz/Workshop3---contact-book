@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Formularz do dodania adresu zamieszkania</title>
+</head>
+<body>
+    <form method="post">
+        {% csrf_token %}
+        <input type="text" maxlength="160" placeholder="Miasto" name="city">
+        <input type="text" maxlength="160" placeholder="Ulica" name="street">
+        <input type="number" placeholder="numer domu" name="house">
+        <input type="number" placeholder="numer mieszkania (opcjonalnie)" name="flat">
+        <input type="submit" value="Dodaj adres">
+    </form>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dodawanie telefonu</title>
+</head>
+<body>
+    <form method="post">
+        {% csrf_token %}
+        <label>Numer telefonu:
+            <input type="number" name="phone_number">
+        </label>
+        <label>Opis tego numeru:
+            <input type="text" name="phone_description">
+        </label>
+        <input type="submit" value="Dodaj">
+    </form>
+
+</body>
+</html>

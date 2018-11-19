@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista grup</title>
+</head>
+<body>
+<div>
+<p>Twoje grupy: </p>
+    <ul>
+        {% for group in groups %}
+            <li>
+                {{ group.group_name }}
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+<div>
+    <p>----</p>
+    <form action="/allGroups" method="post">
+        {% csrf_token %}
+        <label>Stwórz grupę:
+        <input type="text" maxlength="160" name="group_name" placeholder="nazwa nowej grupy">
+        </label>
+        <input type="submit" value="Stwórz">
+    </form>
+</div>
+<p>----------</p>
+<div>
+
+    <form action="/AddContactToGroup" method="POST">
+        {% csrf_token %}
+            <label>Dodaj
+                 <select>
+                    {%  for person in people %}
+                        <option value="person" name="person">{{ person }}</option>
+                    {% endfor %}
+                </select>
+            </label>
+            <label> do grupy
+                <select multiple>
+                    {%  for group in group_list %}
+                        <option value="groups" name="groups">{{ group }}</option>
+                    {% endfor %}
+                </select>
+            </label>
+        <input type="submit" value="OK">
+
+
+
+    </form>
+</div>
+<p>--------------------</p>
+<div>
+    Wyszukaj w grupach:
+    <form action="/groupSearch" method="POST">
+    {% csrf_token %}
+        <label>Po imieniu:
+            <input type="text" name="contact_name">
+        </label><BR>
+        <label>Po nazwisku:
+            <input type="text" name="contact_surname">
+        </label><BR>
+        <input type="submit" value="Sprawdź">
+    </form>
+
+
+
+</div>
+</body>
+</html>
