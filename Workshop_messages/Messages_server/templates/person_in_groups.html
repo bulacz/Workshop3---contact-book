@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Person in groups</title>
+</head>
+<body>
+<h1>Wyniki wyszukiwania</h1>
+{% for person in people %}
+    {{ person }}<BR>
+        {% if person.group.all %}
+            <ul>
+            {% for group in person.group.all %} <li>{{ group }}</li><BR>
+                {% endfor %}
+            </ul>
+        {% else %}
+            No groups assigned<BR><br>
+        {% endif %}
+{% endfor %}
+
+</body>
+</body>
+</html>

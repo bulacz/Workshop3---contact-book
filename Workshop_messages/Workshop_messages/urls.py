@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path, re_path
 
 from Messages_server.views import add_person, delete_person, show_person, show_all, MainView, \
-    ModifyPerson, AddTelephone, AddEmail, AddAdress, show_all_groups, AddContactToGroup, GroupSearch
+    ModifyPerson, AddTelephone, AddEmail, AddAdress, show_all_groups, AddContactToGroup, GroupSearch, PersonInGroups
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -33,4 +33,5 @@ urlpatterns = [
     re_path(r'^allGroups', show_all_groups),
     re_path(r'^AddContactToGroup', AddContactToGroup.as_view()),
     re_path(r'^groupSearch', GroupSearch.as_view()),
+    re_path(r'^personInGroups', PersonInGroups.as_view)
 ]

@@ -5,8 +5,15 @@
     <title>Wyszukiwanie w grupach</title>
 </head>
 <body>
-    {%  for pair in ctx %}
-        {{ key }}:{value}
-    {% endfor %}
+<form method="POST">
+    {% csrf_token %}
+        <label>Po imieniu:
+            <input type="text" name="contact_name">
+        </label><BR>
+        <label>Po nazwisku:
+            <input type="text" name="contact_surname">
+        </label><BR>
+        <input type="submit" value="Sprawdź">
+    </form>
 </body>
 </html>

@@ -48,6 +48,7 @@ class Email(models.Model):
 class Groups(models.Model):
     group_name = models.CharField(max_length=160)
 
+
     def __str__(self):
         return f"{self.group_name}"
 

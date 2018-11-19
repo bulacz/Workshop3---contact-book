@@ -204,8 +204,6 @@ def show_all_groups(request):
         group_list = []
         for each_group in groups:
             group_list.append(each_group)
-        # print(group_list)
-        # print(groups)
 
         ctx = {
             "groups": groups,
@@ -236,44 +234,25 @@ class AddContactToGroup(View):
 
 class GroupSearch(View):
     def post (self, request):
-        person_name = request.POST.get('contact_name')
-        person_surname = request.POST.get('contact_surname')
-        if person_name:
-            people = Person.objects.filter(name=person_name)
-            if people:
-                ctx = {}
-                people_list = []
-                groups_list = []
-                for person in people:
-                    # ctx[person] = Groups.objects.filter(person=person)
-                    # print("5", ctx)
-                    # print("6", ctx.items())
-
-
-
-
-            else:
-                return f"Sorry!"
-
-
-            return render(request, "group-search.html", ctx)
-
-        elif person_surname:
-            person = Person.objects.filter(surname__contains=person_surname)
-            number_of_people = len(person)
-            result = Groups.objects.filter(person__surname__contains=person_surname)
+        person_name = request.POST.get('contact_name')  #pobranie imienia osoby z POSTa
+        person_surname = request.POST.get('contact_surname')  #pobranie nazwiska osoby z POSTa
+        # if person_name:
+        people = Person.objects.filter(name__contains=person_name).filter(surname__contains=person_surname)  #queryset z Person spełniającymi warunek imienia
+        if people:
             ctx = {
-                "query_result": result,
-                "person_searched_for": person,
-                "number_of_people": number_of_people,
+                "people": people,
             }
-            return render(request, "group-search.html", ctx)
-
         else:
-            ctx = {"Wrong data"}
-            return render(request, "group-search.html", ctx)
+            return Http404
+        return render(request, "person_in_groups.html", ctx)
 
     def get (self, request):
-        pass
+        return render(request, "group-search.html")
+
+
+class PersonInGroups(View):
+    def get (request):
+        return HttpResponse("Witamy na stronie na której pokażą się wyniki wyszukiwania grup")
+
 
 
