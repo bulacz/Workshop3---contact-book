@@ -234,17 +234,20 @@ class AddContactToGroup(View):
 
 class GroupSearch(View):
     def post (self, request):
-        person_name = request.POST.get('contact_name')  #pobranie imienia osoby z POSTa
-        person_surname = request.POST.get('contact_surname')  #pobranie nazwiska osoby z POSTa
-        # if person_name:
-        people = Person.objects.filter(name__contains=person_name).filter(surname__contains=person_surname)  #queryset z Person spełniającymi warunek imienia
-        if people:
-            ctx = {
-                "people": people,
-            }
-        else:
+        try:
+            person_name = request.POST.get('contact_name')  #pobranie imienia osoby z POSTa
+            person_surname = request.POST.get('contact_surname')  #pobranie nazwiska osoby z POSTa
+            people = Person.objects.filter(name__contains=person_name).\
+                filter(surname__contains=person_surname).order_by("surname")
+            if people:
+                ctx = {
+                    "people": people,
+                }
+            else:
+                raise Http404
+            return render(request, "person_in_groups.html", ctx)
+        except AttributeError:
             return Http404
-        return render(request, "person_in_groups.html", ctx)
 
     def get (self, request):
         return render(request, "group-search.html")
