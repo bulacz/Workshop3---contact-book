@@ -7,9 +7,9 @@
 <body>
     <form method="post">
         {% csrf_token %}
-        <input type="text" maxlength="160" placeholder="Miasto" name="city">
-        <input type="text" maxlength="160" placeholder="Ulica" name="street">
-        <input type="number" placeholder="numer domu" name="house">
+        <input type="text" maxlength="160" placeholder="Miasto" name="city" required>
+        <input type="text" maxlength="160" placeholder="Ulica" name="street" required>
+        <input type="number" placeholder="numer domu" name="house" required>
         <input type="number" placeholder="numer mieszkania (opcjonalnie)" name="flat">
         <input type="submit" value="Dodaj adres">
     </form>

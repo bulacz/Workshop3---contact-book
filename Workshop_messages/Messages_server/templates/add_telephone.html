@@ -8,10 +8,10 @@
     <form method="post">
         {% csrf_token %}
         <label>Numer telefonu:
-            <input type="number" name="phone_number">
+            <input type="number" name="phone_number" required>
         </label>
         <label>Opis tego numeru:
-            <input type="text" name="phone_description">
+            <input type="text" name="phone_description" required>
         </label>
         <input type="submit" value="Dodaj">
     </form>

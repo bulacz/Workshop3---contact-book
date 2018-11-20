@@ -76,7 +76,7 @@ class ModifyPerson(View):
             doomed_adress = Adress.objects.get(pk=request.POST.get('adress_delete'))
             doomed_adress.delete()
 
-        # returning to the sit with user_info
+        # returning to the site with user_info
         return HttpResponseRedirect(f'/show/{id}')
 
 
@@ -137,8 +137,6 @@ class AddTelephone(View):
         )
 
         return HttpResponseRedirect(f"/show/{id}")
-
-
 
 #obsługa (po gecie) żadania skasowania użytkownika
 def delete_person(request, id):
@@ -232,12 +230,15 @@ class AddContactToGroup(View):
         return render(request, "add_contact_to_group.html", ctx)
 
     def post (self, request):
-        selected_groups = request.POST.getlist('groups')
         selected_user = Person.objects.get(pk=request.POST.get('person'))
-        for single_group_id in selected_groups:
-            selected_user.group.add(Groups.objects.get(pk=single_group_id))
+        selected_groups = request.POST.getlist('groups')
+        group_counter = 0
+        while(group_counter < len(selected_groups)):
 
-            return HttpResponseRedirect('/personInGroups')
+            selected_user.group.add(Groups.objects.get(pk=selected_groups[group_counter]))
+            group_counter += 1
+
+        return HttpResponseRedirect('/personInGroups')
 
 
 class GroupSearch(View):

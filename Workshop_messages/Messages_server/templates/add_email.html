@@ -8,10 +8,10 @@
     <form method="post">
         {% csrf_token %}
         <label>Adres e-mail:
-            <input type="email" name="email_adress">
+            <input type="email" name="email_adress" required>
         </label>
         <label>Opis tego emaila:
-            <input type="text" name="email_description">
+            <input type="text" name="email_description" required>
         </label>
         <input type="submit" value="Dodaj">
     </form>

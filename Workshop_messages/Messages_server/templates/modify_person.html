@@ -14,13 +14,13 @@
             <tr>
                     <td>Imię:</td>
                 <td>
-                    <input type="text" maxlength="160" name="name" value="{{ person_name }}">
+                    <input type="text" maxlength="160" name="name" value="{{ person_name }}" required>
                 </td>
             </tr>
             <tr>
                 <td>Nazwisko:</td>
                 <td>
-                    <input type="text" maxlength="160" name="surname" value="{{ person_surname }}">
+                    <input type="text" maxlength="160" name="surname" value="{{ person_surname }}"required>
                 </td>
             </tr>
             {% if person_description %}
