@@ -6,7 +6,7 @@
 </head>
 <body>
 <div>
-<p>Twoje grupy: </p>
+<h3>Twoje grupy: </h3>
     <ul>
         {% for group in groups %}
             <li>
@@ -17,46 +17,28 @@
 </div>
 <div>
     <p>----</p>
-    <form action="/allGroups" method="post">
-        {% csrf_token %}
-        <label>Stwórz grupę:
-        <input type="text" maxlength="160" name="group_name" placeholder="nazwa nowej grupy">
-        </label>
-        <input type="submit" value="Stwórz">
-    </form>
+<form action="/allGroups" method="post">
+    {% csrf_token %}
+    <input type="text" maxlength="160" name="group_name" placeholder="nazwa nowej grupy" required>
+    <input type="submit" value="Stwórz">
+</form>
 </div>
 <p>----------</p>
-<div>
-
-    <form action="/AddContactToGroup" method="POST">
-        {% csrf_token %}
-            <label>Dodaj
-                 <select>
-                    {%  for person in people %}
-                        <option value="person" name="person">{{ person }}</option>
-                    {% endfor %}
-                </select>
-            </label>
-            <label> do grupy
-                <select multiple>
-                    {%  for group in group_list %}
-                        <option value="groups" name="groups">{{ group }}</option>
-                    {% endfor %}
-                </select>
-            </label>
-        <input type="submit" value="OK">
-
-
-
-    </form>
-</div>
-<p>--------------------</p>
 <div>
 <form method="get">
     <button formaction="/groupSearch">Wyszukaj w grupach</button>
 </form>
-
-
 </div>
+<div>
+<p>----------</p>
+<form action="/AddContactToGroup" method="get">
+    <input type="submit" value="Dodaj kontakt do grup">
+</form>
+<p>-----------</p>
+<form action="/personInGroups" method="get">
+    <input type="submit" value="Pokaż użytkowników w grupach">
+</form>
+</div>
+
 </body>
 </html>

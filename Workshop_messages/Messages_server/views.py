@@ -95,7 +95,7 @@ class AddAdress(View):
                 city=request.POST.get("city"),
                 street=request.POST.get("street"),
                 house=request.POST.get("house"),
-                flat=request.POST.get("flat")
+                flat=request.POST.get("flat"),
             )
         else:
             new_adress = Adress.objects.create(
@@ -177,7 +177,7 @@ def show_person(request, id):
                 "person_description": person_to_show.description,
                 "persons_phones": persons_telephones,
                 "persons_emails": persons_emails,
-                "persons_adress": person_to_show.adress
+                "persons_adress": person_to_show.adress,
             }
 
             return render(request, "show_person.html", ctx)
@@ -191,7 +191,7 @@ def show_all(request):
     if request.method == 'GET':
         all_people = Person.objects.order_by("surname")
         ctx = {
-            "all_people": all_people
+            "all_people": all_people,
         }
 
         return render(request, "show_all_users.html", ctx)
@@ -208,7 +208,7 @@ def show_all_groups(request):
         ctx = {
             "groups": groups,
             "people": people,
-            "group_list": group_list
+            "group_list": group_list,
         }
 
         return render(request, "show_all_groups.html", ctx)
@@ -221,15 +221,23 @@ def show_all_groups(request):
 
 class AddContactToGroup(View):
     def get (self, request):
-        return HttpResponseRedirect("/allGroups")
+        all_contacts = Person.objects.all()
+        all_groups = Groups.objects.all()
+
+        ctx = {
+            "all_contacts": all_contacts,
+            "all_groups": all_groups,
+        }
+
+        return render(request, "add_contact_to_group.html", ctx)
 
     def post (self, request):
-        grupy = request.POST.getlist('groups')
-        contact = request.POST.getlist('person')
-        print(grupy)
-        print(contact)
+        selected_groups = request.POST.getlist('groups')
+        selected_user = Person.objects.get(pk=request.POST.get('person'))
+        for single_group_id in selected_groups:
+            selected_user.group.add(Groups.objects.get(pk=single_group_id))
 
-        return HttpResponseRedirect("/allGroups")
+            return HttpResponseRedirect('/personInGroups')
 
 
 class GroupSearch(View):
@@ -254,8 +262,7 @@ class GroupSearch(View):
 
 
 class PersonInGroups(View):
-    def get (request):
-        return HttpResponse("Witamy na stronie na której pokażą się wyniki wyszukiwania grup")
-
-
-
+    def get (self, request):
+        contacts = Person.objects.all()
+        ctx = {"people": contacts}
+        return render(request, "show_all_contacts_groups.html", ctx)

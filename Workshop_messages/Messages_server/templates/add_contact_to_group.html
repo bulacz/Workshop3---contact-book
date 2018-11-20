@@ -2,9 +2,28 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Dodawanie użytkowników</title>
 </head>
 <body>
+<h3>Dodaj użytkownika: </h3></h2>
+<form action="/AddContactToGroup" method="POST">
+    {% csrf_token %}
+        <label>Dodaj
+             <select name="person">
+                {%  for person in all_contacts %}
+                    <option value="{{ person.id }}">{{ person }}</option>
+                {% endfor %}
+            </select>
+        </label>
+        <label> do grupy
+            <select multiple name="groups">
+                {%  for group in all_groups %}
+                    <option value="{{ group.id }}">{{ group }}</option>
+                {% endfor %}
+            </select>
+        </label>
+    <input type="submit" value="OK">
+</form>
 
 </body>
 </html>

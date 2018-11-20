@@ -33,5 +33,5 @@ urlpatterns = [
     re_path(r'^allGroups', show_all_groups),
     re_path(r'^AddContactToGroup', AddContactToGroup.as_view()),
     re_path(r'^groupSearch', GroupSearch.as_view()),
-    re_path(r'^personInGroups', PersonInGroups.as_view)
+    re_path(r'^personInGroups', PersonInGroups.as_view())
 ]
