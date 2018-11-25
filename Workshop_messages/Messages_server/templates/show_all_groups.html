@@ -3,41 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <title>Lista grup</title>
+
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- Latest compiled and minified CSS -->
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//css/default_style.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 </head>
 <body>
-<div>
-<h3>Twoje grupy: </h3>
+<div class="page-header" align="center">
+    <h4><a href="/new"><button class="btn btn-dark btn-lg">Nowy kontakt</button></a>
+    <a href="/allusers"><button class="btn btn-dark btn-lg">Wszystkie kontakty</button></a>
+    <a href="/allGroups"><button class="btn btn-dark btn-lg">Wszystkie grupy</button></a></h4>
+</div>
+<div align="center">
+    <h3><ul><li class="list-unstyled">Twoje grupy:</li></ul></h3>
     <ul>
         {% for group in groups %}
-            <li>
+            <li class="list-unstyled">
                 {{ group.group_name }}
             </li>
         {% endfor %}
     </ul>
 </div>
-<div>
-    <p>----</p>
-<form action="/allGroups" method="post">
-    {% csrf_token %}
-    <input type="text" maxlength="160" name="group_name" placeholder="nazwa nowej grupy" required>
-    <input type="submit" value="Stwórz">
-</form>
-</div>
-<p>----------</p>
-<div>
-<form method="get">
-    <button formaction="/groupSearch">Wyszukaj w grupach</button>
-</form>
-</div>
-<div>
-<p>----------</p>
-<form action="/AddContactToGroup" method="get">
-    <input type="submit" value="Dodaj kontakt do grup">
-</form>
-<p>-----------</p>
-<form action="/personInGroups" method="get">
-    <input type="submit" value="Pokaż użytkowników w grupach">
-</form>
+<div align="center">
+    <form action="/allGroups" method="post">
+        {% csrf_token %}
+        <input type="text" maxlength="160" name="group_name" placeholder="Nazwa nowej grupy" required>
+        <input type="submit" class="btn btn-secondary" value="Stwórz">
+    </form>
+<!-- usiłowałem ustawić odstępy pionowe marginem, ale nie wyszło -->
+<BR>
+    <form method="get">
+        <button class="btn btn-secondary" formaction="/groupSearch">Wyszukaj w grupach</button>
+    </form>
+<Br>
+    <form action="/AddContactToGroup" method="get">
+        <button class="btn btn-secondary">Dodaj kontakt do grupy</button>
+    </form>
+<BR>
+    <form action="/personInGroups" method="get">
+         <button class="btn btn-secondary" >Pokaż użytkowników w grupach</button>
+
+    </form>
+<BR>
+    <form action="/allusers" method="get">
+        <button class="btn btn-secondary" >Pokaż wszystkie kontakty</button>
+    </form>
 </div>
 
 </body>

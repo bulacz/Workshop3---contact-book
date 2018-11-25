@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, re_path
 
-from Messages_server.views import add_person, delete_person, show_person, show_all, MainView, \
+from Messages_server.views import add_person, delete_person, show_person, show_all, \
     ModifyPerson, AddTelephone, AddEmail, AddAdress, show_all_groups, AddContactToGroup, GroupSearch, PersonInGroups
 
 urlpatterns = [
@@ -28,10 +28,12 @@ urlpatterns = [
     re_path(r'^(?P<id>\d+)/addTelephone$', AddTelephone.as_view()),
     re_path(r'^delete/(?P<id>\d+)$', delete_person),
     re_path(r'^show/(?P<id>\d+)$', show_person),
-    re_path(r'^$', MainView.as_view()),
+    re_path(r'^$', show_all),
     re_path(r'^allusers$', show_all),
     re_path(r'^allGroups', show_all_groups),
     re_path(r'^AddContactToGroup', AddContactToGroup.as_view()),
     re_path(r'^groupSearch', GroupSearch.as_view()),
-    re_path(r'^personInGroups', PersonInGroups.as_view())
+    re_path(r'^personInGroups', PersonInGroups.as_view()),
+
+
 ]

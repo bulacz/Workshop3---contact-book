@@ -2,65 +2,82 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Dane osoby </title>
+    <title>Title</title>
+    <!-- Latest compiled and minified CSS -->
 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- Latest compiled and minified JavaScript -->
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <title>Dane osoby </title>
 </head>
 <body>
-
-    <table border="2">
-        <th colspan="2">Dane osoby</th>
-            <tr>
-                <td>Imię: </td>
-                <td>{{ person_name }}</td>
-            </tr>
-            <tr>
-                <td>Nazwisko:</td>
-                <td>{{ person_surname }}</td>
-            </tr>
-            {% if person_description %}
-                <tr>
-                    <td>Opis: </td>
-                    <td>{{ person_description }}</td>
-                </tr>
+<div class="page-header" align="center">
+    <h4><a href="/new"><button class="btn btn-dark btn-lg">Nowy kontakt</button></a>
+    <a href="/allusers"><button class="btn btn-dark btn-lg">Wszystkie kontakty</button></a>
+    <a href="/allGroups"><button class="btn btn-dark btn-lg">Wszystkie grupy</button></a></h4>
+</div>
+<div>
+<table class="table-bordered" align="center" width="350">
+    <th colspan="2">Dane osoby</th>
+    <tr>
+        <td>Imię:</td>
+        <td>{{ person_name }}</td>
+    </tr>
+    <tr>
+        <td>Nazwisko:</td>
+        <td>{{ person_surname }}</td>
+    </tr>
+    {% if person_description %}
+        <tr>
+            <td>Opis:</td>
+            <td>{{ person_description }}</td>
+        </tr>
+    {% endif %}
+    {% if persons_phones %}
+        <tr>
+            <td>telefony:</td>
+            <td>
+                <ul>{% for telephone in persons_phones %}
+                    <li class="list-unstyled">{{ telephone }}</li>
+                {% endfor %}
+                </ul>
+            </td>
+        </tr>
+    {% endif %}
+    {% if persons_emails %}
+        <tr>
+            <td>e-maile:</td>
+            <td>
+                <ul>{% for email in persons_emails %}
+                    <li class="list-unstyled">{{ email }}</li>
+                {% endfor %}
+                </ul>
+            </td>
+        </tr>
+    {% endif %}
+    {% if persons_adress %}
+        <tr>
+            <td>Adres:</td>
+            {% if persons_adress.flat == None %}
+                <td>{{ persons_adress.city }}, {{ persons_adress.street }} nr {{ persons_adress.house }}</td>
+            {% else %}
+                <td> {{ persons_adress }} </td>
             {% endif %}
-            {% if persons_phones %}
-                <tr>
-                    <td>telefony: </td>
-                    <td>
-                        <ul>{% for telephone in persons_phones %}
-                            <li>{{ telephone }}</li>
-                            {% endfor %}
-                        </ul>
-                    </td>
-                </tr>
-            {% endif %}
-            {% if persons_emails %}
-                <tr>
-                    <td>e-maile: </td>
-                    <td>
-                        <ul>{% for email in persons_emails %}
-                            <li>{{ email }}</li>
-                            {% endfor %}
-                        </ul>
-                    </td>
-                </tr>
-            {% endif %}
-            {% if persons_adress %}
-                <tr>
-                    <td>Adres: </td>
-                        {% if persons_adress.flat == None %}
-                            <td>{{ persons_adress.city }}, {{ persons_adress.street }} nr {{ persons_adress.house }}</td>
-                        {% else %}
-                            <td> {{ persons_adress }} </td>
-                        {% endif %}
-                </tr>
-            {% endif %}
-    </table>
-
+        </tr>
+    {% endif %}
+</table>
+</div>
+<BR>
+<div align="center">
     <form method="get">
-        <button formaction="/modify/{{ person_id }}">Modyfikuj</button>
-        <button formaction="/allusers">Pokaż wszystkich</button>
+        <button class="btn btn-secondary" formaction="/modify/{{ person_id }}">Modyfikuj</button>
+        <button class="btn btn-secondary" formaction="/allusers">Pokaż wszystkich</button>
     </form>
+</div>
 
 
 </body>

@@ -3,18 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <!-- Latest compiled and minified CSS -->
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- Latest compiled and minified JavaScript -->
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <body>
+<div align="center">
+    <h4>Dodaj adres e-mail</h4>
     <form method="post">
         {% csrf_token %}
         <label>Adres e-mail:
             <input type="email" name="email_adress" required>
-        </label>
+        </label><BR>
         <label>Opis tego emaila:
             <input type="text" name="email_description" required>
-        </label>
+        </label><BR>
         <input type="submit" value="Dodaj">
     </form>
-
+</div>
 </body>
 </html>

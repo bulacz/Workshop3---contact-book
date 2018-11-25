@@ -3,18 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <title>Dodawanie telefonu</title>
+        <!-- Latest compiled and minified CSS -->
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- Latest compiled and minified JavaScript -->
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <body>
+<div align="center">
+<h4>Dodaj nr telefonu</h4>
     <form method="post">
         {% csrf_token %}
         <label>Numer telefonu:
             <input type="number" name="phone_number" required>
-        </label>
+        </label><BR>
         <label>Opis tego numeru:
             <input type="text" name="phone_description" required>
-        </label>
+        </label><BR>
         <input type="submit" value="Dodaj">
     </form>
-
+</div>
 </body>
 </html>

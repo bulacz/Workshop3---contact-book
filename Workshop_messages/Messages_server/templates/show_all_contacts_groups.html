@@ -2,24 +2,40 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Person in groups</title>
+
+    <meta charset="UTF-8">
+    <title>Wszystkie osoby w grupach</title>
+    <!-- Latest compiled and minified CSS -->
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- Latest compiled and minified JavaScript -->
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
 </head>
 <body>
-<h3>Wszystkie osoby i ich grupy:</h3>
-{% for person in people %}
-    {{ person }}<BR>
-        {% if person.group.all %}
-            <ul>
-            {% for group in person.group.all %} <li>{{ group }}</li><BR>
-                {% endfor %}
-            </ul>
-        {% else %}
-            No groups assigned<BR><br>
-        {% endif %}
-{% endfor %}
-<form method="get">
-    <button formaction="/allGroups">Pokaż wszystkie grupy</button>
-</form>
-</body>
+<div class="page-header" align="center">
+    <h4><a href="/new"><button class="btn btn-dark btn-lg">Nowy kontakt</button></a>
+    <a href="/allusers"><button class="btn btn-dark btn-lg">Wszystkie kontakty</button></a>
+    <a href="/allGroups"><button class="btn btn-dark btn-lg">Wszystkie grupy</button></a></h4>
+</div>
+<div align="center">
+    <h3 align="center">Grupy przypisane do użytkowników</h3>
+        {% for person in people %}
+            <ul><li class="list-group-item"><strong>{{ person }}:</strong></li></ul><BR>
+            {% if person.group.all %}
+                <ul>
+                    {% for group in person.group.all %}
+                        <li class="list-unstyled" >{{ group }}</li><BR>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endfor %}
+</div>
+
+
+
 </body>
 </html>

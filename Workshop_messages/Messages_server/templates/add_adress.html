@@ -3,15 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <title>Formularz do dodania adresu zamieszkania</title>
+    <meta charset="UTF-8">
+    <title>Title</title>
+        <!-- Latest compiled and minified CSS -->
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- Latest compiled and minified JavaScript -->
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <body>
+<div align="center">
+    <h4 >Dodaj adres do kontaktu:</h4>
     <form method="post">
         {% csrf_token %}
-        <input type="text" maxlength="160" placeholder="Miasto" name="city" required>
-        <input type="text" maxlength="160" placeholder="Ulica" name="street" required>
-        <input type="number" placeholder="numer domu" name="house" required>
-        <input type="number" placeholder="numer mieszkania (opcjonalnie)" name="flat">
+        <input type="text" maxlength="160" placeholder="Miasto" name="city" required><BR>
+        <input type="text" maxlength="160" placeholder="Ulica" name="street" required><BR>
+        <input type="number" placeholder="numer domu" name="house" required><br>
+        <input type="number" placeholder="numer mieszkania (opcjonalnie)" name="flat"><BR>
         <input type="submit" value="Dodaj adres">
     </form>
+</div>
+
 </body>
 </html>

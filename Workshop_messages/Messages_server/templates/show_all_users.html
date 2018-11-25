@@ -3,32 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <!-- Latest compiled and minified CSS -->
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- Latest compiled and minified JavaScript -->
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 </head>
 <body>
-    <table>
-    <tr>
-        <th colspan="2">Twoi użytkownicy</th>
-        <td><form><button formaction="new" formmethod="get">Dodaj</button></form></td>
-    </tr>
-
-        {% for person in all_people %}
+<div class="container" id="menu">
+    <div class="page-header" align="center">
+        <h4><a href="/new">
+            <button class="btn btn-dark btn-lg">Nowy kontakt</button>
+        </a>
+            <a href="/allusers">
+                <button class="btn btn-dark btn-lg">Wszystkie kontakty</button>
+            </a>
+            <a href="/allGroups">
+                <button class="btn btn-dark btn-lg">Wszystkie grupy</button>
+            </a></h4>
+    </div>
+    <div>
+        <table class="table table-bordered" align="center">
+            <thead class="thead-dark">
             <tr>
-                <td>
-                    {{ person.surname }}, <a href="show/{{ person.id }}">{{ person.name }}</a>
-                </td>
-                <td>
-                    <form method="get">
-                        <button formaction="modify/{{ person.id }}">Modyfikuj</button>
-                    </form>
-
-                </td>
-                <td>
-                    <form>
-                        <button formaction="delete/{{ person.id }}">Skasuj</button>
-                    </form>
-                </td>
+                <th colspan="3" align="center">Twoje kontakty</th>
             </tr>
-        {% endfor %}
-    </table>
+            </thead>
+            <tbody>
+            {% for person in all_people %}
+                <tr>
+                    <td>
+                        {{ person.surname }}, <a href="show/{{ person.id }}">{{ person.name }}</a>
+                    </td>
+                    <td>
+                        <form method="get">
+                            <button class="btn btn-info" formaction="modify/{{ person.id }}">Modyfikuj</button>
+                        </form>
+
+                    </td>
+                    <td>
+                        <form>
+                            <button class="btn btn-danger" formaction="delete/{{ person.id }}">Skasuj</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
 </body>
 </html>

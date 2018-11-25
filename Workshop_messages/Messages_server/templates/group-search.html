@@ -3,8 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <title>Wyszukiwanie w grupach</title>
+        <!-- Latest compiled and minified CSS -->
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- Latest compiled and minified JavaScript -->
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <body>
+<div class="page-header" align="center">
+    <h4><a href="/new"><button class="btn btn-dark btn-lg">Nowy kontakt</button></a>
+    <a href="/allusers"><button class="btn btn-dark btn-lg">Wszystkie kontakty</button></a>
+    <a href="/allGroups"><button class="btn btn-dark btn-lg">Wszystkie grupy</button></a></h4>
+</div>
+<div align="center">
 <form method="POST">
     {% csrf_token %}
         <label>Po imieniu:
@@ -15,5 +29,6 @@
         </label><BR>
         <input type="submit" value="Sprawdź">
     </form>
+</div>
 </body>
 </html>

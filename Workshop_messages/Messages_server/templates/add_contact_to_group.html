@@ -2,28 +2,48 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Dodawanie użytkowników</title>
+    <title>Dodawanie użytkowników do grup</title>
+           <!-- Latest compiled and minified CSS -->
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- Latest compiled and minified JavaScript -->
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <body>
-<h3>Dodaj użytkownika: </h3></h2>
+<div class="page-header" align="center">
+    <h4><a href="/new">
+        <button class="btn btn-dark btn-lg">Nowy kontakt</button>
+    </a>
+        <a href="/allusers">
+            <button class="btn btn-dark btn-lg">Wszystkie kontakty</button>
+        </a>
+        <a href="/allGroups">
+            <button class="btn btn-dark btn-lg">Wszystkie grupy</button>
+        </a></h4>
+</div>
+<div>
+<h4>Dodaj użytkownika: </h4></h2>
 <form action="/AddContactToGroup" method="POST">
     {% csrf_token %}
-        <label>Dodaj
-             <select name="person">
-                {%  for person in all_contacts %}
-                    <option value="{{ person.id }}">{{ person }}</option>
-                {% endfor %}
-            </select>
-        </label>
-        <label> do grupy
-            <select multiple name="groups">
-                {%  for group in all_groups %}
-                    <option value="{{ group.id }}">{{ group }}</option>
-                {% endfor %}
-            </select>
-        </label>
+    <label>Dodaj
+        <select name="person">
+            {% for person in all_contacts %}
+                <option value="{{ person.id }}">{{ person }}</option>
+            {% endfor %}
+        </select>
+    </label>
+    <label> do grupy
+        <select multiple name="groups">
+            {% for group in all_groups %}
+                <option value="{{ group.id }}">{{ group }}</option>
+            {% endfor %}
+        </select>
+    </label>
     <input type="submit" value="OK">
 </form>
-
+</div>
 </body>
 </html>
